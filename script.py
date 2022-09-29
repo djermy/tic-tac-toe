@@ -43,5 +43,6 @@ def turn():
         else:
             move = int(input("Player 2's turn, input a tile to take: "))
             game_board[move-1] = p2
+        print_board_layout()
         print_game()
 turn()
