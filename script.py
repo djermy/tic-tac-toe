@@ -28,15 +28,15 @@ print_game()
 
 def turn():
     turn_counter = 0
-    if turn_counter > 10:
-        return "GAME OVER!"
     for i in range(10):
         move = 0
-        if turn_counter % 2 == 0:
+        turn_counter += 1
+        if turn_counter >= 10:
+            return print("GAME OVER!")
+        if turn_counter % 2 != 0:
             print("Player 1's turn:")
         else:
             print("Player 2's turn:")
-        turn_counter += 1
         if turn_counter % 2 == 0:
             move = int(input("Input a tile to take: "))
             game_board[move-1] = p1
