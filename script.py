@@ -16,30 +16,33 @@ def print_game():
     game = "Game Board:" + "\n" + line1 + "\n" + line2 + "\n" + line3
     print(game)
 
+
+# show who's turn it is, and ensures the user inputs a valid value.
+def valid_move(move, turn_counter):
+    turn = ""
+    if turn_counter % 2 != 0:
+        turn = "Player 1"
+    else:
+        turn = "Player 2"
+    while move == " ":
+        try:
+            move = int(input(turn + "'s turn, input a tile to take: "))
+        except ValueError:
+            print("Input invalid, Please enter a number from the board reference above.")
+    if turn_counter % 2 != 0:
+        game_board[move-1] = p1
+    else:   
+        game_board[move-1] = p2
+
 def turn():
     turn_counter = 0
     for i in range(10):
         move = " "
         turn_counter += 1
-
         # print game over message after 9 turns played.
         if turn_counter >= 10:
             return print("GAME OVER!")
-        # show who's turn it is, and ensures the user inputs a valid value.
-        if turn_counter % 2 != 0:
-            while move == " ":
-                try:
-                    move = int(input("Player 1's turn, input a tile to take: "))
-                except ValueError:
-                    print("Input invalid, Please enter a number from the board reference above.")
-            game_board[move-1] = p1
-        else:
-            while move == " ":
-                try:
-                    move = int(input("Player 2's turn, input a tile to take: "))
-                except ValueError:
-                    print("Input invalid, Please enter a number from the board reference above.")
-            game_board[move-1] = p2
+        valid_move(move, turn_counter)
         print_board_layout()
         print_game()
 
