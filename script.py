@@ -35,13 +35,20 @@ def turn():
         # print game over message after 9 turns played.
         if turn_counter >= 10:
             return print("GAME OVER!")
-
         # show who's turn it is.
         if turn_counter % 2 != 0:
-            move = int(input("Player 1's turn, input a tile to take: "))
+            while move == 0:
+                try:
+                    move = int(input("Player 1's turn, input a tile to take: "))
+                except ValueError:
+                    print("Input invalid, Please enter a number from the board reference above.")
             game_board[move-1] = p1
         else:
-            move = int(input("Player 2's turn, input a tile to take: "))
+            while move == 0:
+                try:
+                    move = int(input("Player 2's turn, input a tile to take: "))
+                except ValueError:
+                    print("Input invalid, Please enter a number from the board reference above.")
             game_board[move-1] = p2
         print_board_layout()
         print_game()
