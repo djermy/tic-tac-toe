@@ -28,7 +28,16 @@ def valid_move(move, turn_counter):
         try:
             move = int(input(turn + "'s turn, input a tile to take: "))
         except ValueError:
-            print("Input invalid, Please enter a number from the board reference above.")
+            print("Input invalid, please enter a number from the board reference above.")
+            continue
+        if move < 1 or move > 9:
+            move = " "
+            print("Error, please input a number between 1 and 9 (inclusive)")
+            continue
+        if game_board[move-1] != " ":
+            move = " "
+            print("This tile is already taken! Please choose another")
+            continue
     if turn_counter % 2 != 0:
         game_board[move-1] = p1
     else:   
