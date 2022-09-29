@@ -31,17 +31,17 @@ def turn():
     for i in range(10):
         move = 0
         turn_counter += 1
+
+        # print game over message after 9 turns played.
         if turn_counter >= 10:
             return print("GAME OVER!")
+
+        # show who's turn it is.
         if turn_counter % 2 != 0:
-            print("Player 1's turn:")
-        else:
-            print("Player 2's turn:")
-        if turn_counter % 2 == 0:
-            move = int(input("Input a tile to take: "))
+            move = int(input("Player 1's turn, input a tile to take: "))
             game_board[move-1] = p1
         else:
-            move = int(input("Input a tile to take: "))
+            move = int(input("Player 2's turn, input a tile to take: "))
             game_board[move-1] = p2
         print_game()
 turn()
