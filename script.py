@@ -38,24 +38,19 @@ def win_condition_lines():
     all_lines = [line_1_h, line_2_h, line_3_h, line_1_v, line_2_v, line_3_v, line_1_d, line_2_d]
     return all_lines
 
-# Checks if any line is a 3 in a row for p1.
-def check_if_p1_won(lines):
+# Checks if any line is a 3 in a row.
+def check_if_game_won(lines):
     for line in lines:
+        o_count = 0
         x_count = 0
         for element in line:
             if element == "x":
                 x_count += 1
+            elif element == "o":
+                o_count += 1
             if x_count == 3:
                 return True
-
-# Checks if any line is a 3 in a row for p2.
-def check_if_p2_won(lines):
-    for line in lines:
-        o_count = 0
-        for element in line:
-            if element == "o":
-                o_count += 1
-            if o_count == 3:
+            elif o_count == 3:
                 return True
 
 
@@ -90,17 +85,17 @@ def turn():
     for i in range(10):
         move = " "
         turn_counter += 1
-        p1_won = check_if_p1_won(win_condition_lines())
-        p2_won = check_if_p2_won(win_condition_lines())
+        game_won = check_if_game_won(win_condition_lines())
         # print game over message after 9 turns played.
         if turn_counter >= 10:
-            return print("GAME OVER!")
-        # ends the game if player 1 wins
-        if p1_won == True:
-            return print("GAME OVER! PLAYER 1 WINS!!!")
-        # ends the game if player 2 wins
-        if p2_won == True:
-            return print("GAME OVER! PLAYER 2 WINS!!!")
+            return print("GAME OVER! IT'S A TIE!")
+        # ends the game if either wins
+        if game_won == True and turn_counter % 2 == 0:
+            print("GAME OVER! PLAYER 1 WINS!!!")
+            return
+        elif game_won == True and turn_counter % 2 != 0:
+            print("GAME OVER! PLAYER 2 WINS!!!")
+            return
         valid_move(move, turn_counter)
         print_board_layout()
         print_game()
