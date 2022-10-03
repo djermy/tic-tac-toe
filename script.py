@@ -1,3 +1,4 @@
+import os
 game_board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 p1 = "x"
 p2 = "o"
@@ -5,6 +6,7 @@ p2 = "o"
 
 # Prints the board layout as a reference to the player.
 def print_board_layout():
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("Board reference:")
     print("[1|2|3]")
     print("[4|5|6]")
@@ -102,6 +104,7 @@ def turn():
         valid_move(move, turn_counter)
         print_board_layout()
         print_game()
+    
 
 print_board_layout()
 print_game()
